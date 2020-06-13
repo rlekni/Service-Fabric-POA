@@ -2,7 +2,7 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{215BF228-73E7-440D-BED6-63F2A4CD4094}</ProjectGuid>
-    <SrcRoot>..\..\..\..\src</SrcRoot>
+    <SrcRoot>..\..\src</SrcRoot>
     <OutputType>Exe</OutputType>
     <RootNamespace>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentService</RootNamespace>
     <AssemblyName>NodeAgentService</AssemblyName>
@@ -48,11 +48,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\NodeAgentNTService\src\NodeAgentNTService.csproj">
+    <ProjectReference Include="..\NodeAgentNTService\NodeAgentNTService.csproj">
       <Project>{d8beed99-bbb5-4dcc-a28e-eec023849335}</Project>
       <Name>NodeAgentNTService</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\NodeAgentSFUtility\src\NodeAgentSFUtility.csproj">
+    <ProjectReference Include="..\NodeAgentSFUtility\NodeAgentSFUtility.csproj">
       <Project>{5c4944f8-ac08-43c8-886c-ac11ddbf7e2f}</Project>
       <Name>NodeAgentSFUtility</Name>
     </ProjectReference>

@@ -5,7 +5,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility</RootNamespace>
     <AssemblyName>CommandProcessor</AssemblyName>
-    <SrcRoot>..\..\..\..\src</SrcRoot>
+    <SrcRoot>..\..\src</SrcRoot>
   </PropertyGroup>
   <Import Project="$(SrcRoot)\properties\common.props" />
   <Import Project="$(SrcRoot)\properties\EnableStylecop.props" />

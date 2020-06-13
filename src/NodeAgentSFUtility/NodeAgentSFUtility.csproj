@@ -2,7 +2,7 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <ProjectGuid>{5C4944F8-AC08-43C8-886C-AC11DDBF7E2F}</ProjectGuid>
-    <SrcRoot>..\..\..\..\src</SrcRoot>
+    <SrcRoot>..\..\src</SrcRoot>
     <OutputType>Exe</OutputType>
     <RootNamespace>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility</RootNamespace>
     <AssemblyName>NodeAgentSFUtility</AssemblyName>
