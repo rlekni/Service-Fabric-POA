@@ -39,11 +39,11 @@ $presentWorkingDirectory= Get-Location
 $ErrorActionPreference = "Stop"
 $PSScriptRoot = Split-Path -Parent -Path $MyInvocation.MyCommand.Definition
 $NugetFullPath = join-path $PSScriptRoot "nuget.exe"
-$SrcRoot = join-path $PSScriptRoot "src\PatchOrchestrationApplication\PatchOrchestrationApplication"
-$PackageConfigPath = join-path $PSScriptRoot "src\PatchOrchestrationApplication\PatchOrchestrationApplication\packages.config"
+$SrcRoot = join-path $PSScriptRoot "src\PatchOrchestrationApplication"
+$PackageConfigPath = join-path $PSScriptRoot "src\PatchOrchestrationApplication\packages.config"
 $packagesDirectory = join-path $PSScriptRoot "packages"
-$nuprojPackagesConfigPath = join-path $PSScriptRoot "src\PatchOrchestrationApplication\PatchOrchestrationApplication\NugetPackage\packages.config"
-$nuprojPath = join-path $PSScriptRoot "src\PatchOrchestrationApplication\PatchOrchestrationApplication\NugetPackage"
+$nuprojPackagesConfigPath = join-path $PSScriptRoot "src\PatchOrchestrationApplication\NugetPackage\packages.config"
+$nuprojPath = join-path $PSScriptRoot "src\PatchOrchestrationApplication\NugetPackage"
 $nugetConfigFilePath = join-path $PSScriptRoot "nuget.config"
 
 
