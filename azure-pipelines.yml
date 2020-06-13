@@ -55,7 +55,7 @@ jobs:
       - task: VSBuild@1
         inputs:
           solution: "**/*.sln"
-          msbuildargs: "/p:Platform=x64"
+          msbuildargs: "/p:Platform=x64 /nr:false /nologo /t:restore;clean;rebuild;package"
           configuration: $(buildConfiguration)
       - task: DotNetCoreCLI@2
         displayName: Package Projects (Publish - Release)
