@@ -51,13 +51,13 @@ jobs:
         inputs:
           projects: $(buildProjects)
           packDirectory: $(Build.ArtifactStagingDirectory)
-          arguments: "-c $(buildConfiguration) /p:Platform=x64 /p:Version=$(Build.BuildNumber)"
+          arguments: "-c $(buildConfiguration) /p:Platform=x64"
       - task: DotNetCoreCLI@2
         displayName: Package Projects (Publish - Release)
         inputs:
           projects: $(packageProjects)
           packDirectory: $(Build.ArtifactStagingDirectory)/drop/release
-          arguments: "-c $(buildConfiguration) /p:Platform=x64 /p:Version=$(Build.BuildNumber) /t:Package /p:PackageLocation=$(Build.ArtifactStagingDirectory)/drop/release/applicationpackage"
+          arguments: "-c $(buildConfiguration) /p:Platform=x64 /t:Package /p:PackageLocation=$(Build.ArtifactStagingDirectory)/drop/release/applicationpackage"
       - task: ServiceFabricUpdateManifests@2
         displayName: Update Service Fabric Version (Release)
         inputs:
