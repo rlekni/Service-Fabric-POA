@@ -11,8 +11,6 @@
     <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
     <Platforms>x64</Platforms>
     <SrcRoot>..\..\src</SrcRoot>
-    <StartupObject>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentNTService.Program</StartupObject>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <Import Project="$(SrcRoot)\properties\common.props" />
   <Import Project="$(SrcRoot)\properties\EnableStylecop.props" />
