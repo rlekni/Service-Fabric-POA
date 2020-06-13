@@ -31,7 +31,6 @@ QuickBuild.log
 msbuild.log
 
 # VSMSBuild generated files in CoreXT
-*.sln
 *.projhash*
 *.slnhash*
 
