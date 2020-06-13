@@ -54,7 +54,7 @@ jobs:
       #     arguments: "-c $(buildConfiguration) /p:Platform=x64"
       - task: VSBuild@1
         inputs:
-          solution: "**\*.sln"
+          solution: "**/*.sln"
           msbuildargs: "/p:Platform=x64"
           configuration: $(buildConfiguration)
       - task: DotNetCoreCLI@2
