@@ -1,46 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{8B11A071-10B0-4AC9-AA88-5F7D917B79ED}</ProjectGuid>
+    <TargetFramework>net45</TargetFramework>
     <OutputType>Library</OutputType>
-    <RootNamespace>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility</RootNamespace>
-    <AssemblyName>CommandProcessor</AssemblyName>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn></NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <Platforms>x64</Platforms>
     <SrcRoot>..\..\src</SrcRoot>
   </PropertyGroup>
   <Import Project="$(SrcRoot)\properties\common.props" />
   <Import Project="$(SrcRoot)\properties\EnableStylecop.props" />
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\CoordinatorService\IDataInterface.cs" Link="IDataInterface.cs" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Runtime.Serialization" />
-    <PackageReference Include="Microsoft.ServiceFabric.Data" Version = "3.3.654"/>
-    <PackageReference Include="Microsoft.ServiceFabric" Version = "6.4.654"/>
-    <PackageReference Include="Microsoft.ServiceFabric.Services" Version = "3.3.654"/>
-    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version = "3.3.654"/>
-    <PackageReference Include="Newtonsoft.Json" Version = "10.0.2"/>
+    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="3.3.654" />
+    <PackageReference Include="Microsoft.ServiceFabric" Version="6.4.654" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="3.3.654" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="3.3.654" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandProcessor.cs" />
-    <Compile Include="Helpers\CoordinatorServiceHelper.cs" />
-    <Compile Include="..\..\CoordinatorService\src\IDataInterface.cs">
-      <Link>IDataInterface.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Common\NodeAgentSFUtilityInterface.cs">
-      <Link>NodeAgentSFUtilityInterface.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Common\WindowsUpdateOperationResult.cs">
-      <Link>WindowUpdateOperationResult.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Common\ExecutorData.cs" />
-    <Compile Include="..\..\Common\IPatchOrchestrationEvents.cs" />
-    <Compile Include="..\..\Common\SerializationUtility.cs" />
-    <Compile Include="Helpers\HealthManagerHelper.cs" />
-    <Compile Include="Helpers\RepairManagerHelper.cs" />
-    <Compile Include="Helpers\ServiceEventSource.cs" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

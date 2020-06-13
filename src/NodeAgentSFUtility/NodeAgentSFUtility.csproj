@@ -1,32 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{5C4944F8-AC08-43C8-886C-AC11DDBF7E2F}</ProjectGuid>
-    <SrcRoot>..\..\src</SrcRoot>
+    <TargetFramework>net45</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility</RootNamespace>
-    <AssemblyName>NodeAgentSFUtility</AssemblyName>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn></NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <Platforms>x64</Platforms>
+    <SrcRoot>..\..\src</SrcRoot>
   </PropertyGroup>
   <Import Project="$(SrcRoot)\properties\common.props" />
   <Import Project="$(SrcRoot)\properties\EnableStylecop.props" />
+  <ItemGroup>
+    <Compile Include="..\CoordinatorService\IDataInterface.cs" Link="IDataInterface.cs" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Runtime.Serialization" />
-    <PackageReference Include="Microsoft.ServiceFabric.Data" Version = "3.3.654"/>
-    <PackageReference Include="Microsoft.ServiceFabric" Version = "6.4.654"/>
-    <PackageReference Include="Microsoft.ServiceFabric.Services" Version = "3.3.654"/>
+    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="3.3.654" />
+    <PackageReference Include="Microsoft.ServiceFabric" Version="6.4.654" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="3.3.654" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services.Remoting" Version="3.3.654" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="ServiceEventSource.cs" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="NodeAgentSFUtilityDll.csproj">
-      <Project>{8b11a071-10b0-4ac9-aa88-5f7d917b79ed}</Project>
-      <Name>NodeAgentSFUtilityDll</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

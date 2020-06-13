@@ -1,21 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ResolveComReferenceSilent>True</ResolveComReferenceSilent>
-    <SrcRoot>..\..\src</SrcRoot>
-    <ProjectGuid>{D8BEED99-BBB5-4DCC-A28E-EEC023849335}</ProjectGuid>
+    <TargetFramework>net45</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentNTService</RootNamespace>
-    <AssemblyName>NodeAgentNTService</AssemblyName>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn></NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <Platforms>x64</Platforms>
+    <SrcRoot>..\..\src</SrcRoot>
+    <StartupObject>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentNTService.Program</StartupObject>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <Import Project="$(SrcRoot)\properties\common.props" />
   <Import Project="$(SrcRoot)\properties\EnableStylecop.props" />
-  <PropertyGroup>
-    <StartupObject>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentNTService.Program</StartupObject>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Fabric.MSBuild" Version="1.6.7" />
@@ -33,29 +32,7 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(CommonRoot)\NodeAgentSFUtilityInterface.cs" />
-    <Compile Include="$(CommonRoot)\WindowsUpdateOperationResult.cs" />
-    <Compile Include="$(CommonRoot)\ExecutorData.cs" />
-    <Compile Include="$(CommonRoot)\SerializationUtility.cs" />
-    <Compile Include="Utility\NodeAgentSfUtility.cs" />
-    <Compile Include="Manager\WindowsUpdateManager.cs" />
-    <Compile Include="Manager\WUErrorCodes.cs" />
-    <Compile Include="Manager\ServiceSettings.cs" />
-    <Compile Include="Manager\SettingsManager.cs" />
-    <Compile Include="Manager\TimerManager.cs" />
-    <Compile Include="ServiceEventSource.cs" />
-    <Compile Include="Service\POAService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Service\ProjectInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Utility\OperationResultFormatter.cs" />
-    <Compile Include="Utility\Helper.cs" />
-    <Compile Include="Utility\ShutdownUtility.cs" />
-    <Compile Include="Utility\WindowsServiceUtility.cs" />
-    <Compile Include="Utility\WindowsAutoUpdateUtility.cs" />
+    <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="WUApiLib">
@@ -71,5 +48,4 @@
   <ItemGroup>
     <None Include="app.manifest" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{100098F7-F31F-4F14-B474-D723B2ED9F34}</ProjectGuid>
+    <TargetFramework>net45</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Microsoft.ServiceFabric.PatchOrchestration.CoordinatorService</RootNamespace>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn></NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <Platforms>x64</Platforms>
     <SrcRoot>..\..\src</SrcRoot>
-    <AssemblyName>CoordinatorService</AssemblyName>
   </PropertyGroup>
   <Import Project="$(SrcRoot)\properties\common.props" />
   <Import Project="$(SrcRoot)\properties\EnableStylecop.props" />
-  <PropertyGroup>
-    <IsServiceFabricServiceProject>true</IsServiceFabricServiceProject>
-  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="3.3.654" />
     <PackageReference Include="Microsoft.ServiceFabric" Version="6.4.654" />
@@ -36,34 +37,13 @@
     <PackageReference Include="Unity.WebAPI" Version="5.2.3" Culture="neutral" PublicKeyToken="43da31bc42a85347" processorArchitecture="MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="WebService\IWebServiceAppBuilder.cs" />
-    <Compile Include="WebService\Startup.cs" />
-    <Compile Include="WebService\DefaultController.cs" />
-    <Compile Include="HealthManagerHelper.cs" />
-    <Compile Include="IDataInterface.cs" />
-    <Compile Include="CoordinatorService.cs" />
-    <Compile Include="WebService\OwinCommunicationListener.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="RepairManagerHelper.cs" />
-    <Compile Include="ServiceEventSource.cs" />
-    <Compile Include="$(CommonRoot)\NodeAgentSFUtilityInterface.cs" />
-    <Compile Include="$(CommonRoot)\\ExecutorData.cs" />
-    <Compile Include="$(CommonRoot)\\SerializationUtility.cs" />
-    <Compile Include="$(CommonRoot)\\WindowsUpdateOperationResult.cs" />
-    <Compile Include="WebService\UnityConfig.cs" />
-    <Compile Include="WindowsUpdateNodeResults.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="PackageRoot\Config\Settings.xml" />
     <None Include="PackageRoot\ServiceManifest.xml">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TelemetryLib\TelemetryLib.csproj">
-      <Project>{7bc6991f-c840-413e-b1cd-4025947cf5fa}</Project>
-      <Name>TelemetryLib</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\TelemetryLib\TelemetryLib.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

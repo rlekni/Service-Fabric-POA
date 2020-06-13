@@ -36,8 +36,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CoordinatorService\src\CoordinatorService.csproj" />
-    <ProjectReference Include="..\NodeAgentService\src\NodeAgentService.csproj" />
+    <ProjectReference Include="..\CoordinatorService\CoordinatorService.csproj" />
+    <ProjectReference Include="..\NodeAgentService\NodeAgentService.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
   <PropertyGroup>

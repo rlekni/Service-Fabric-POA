@@ -1,19 +1,19 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
+using Microsoft.ServiceFabric.PatchOrchestration.Common;
+using Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility.Helpers;
+using System.IO;
+using System.Linq;
+using System.Fabric;
+using System.Fabric.Repair;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+
 namespace Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility
 {
-    using System;
-    using Common;
-    using Helpers;
-    using System.IO;
-    using System.Linq;
-    using System.Fabric;
-    using System.Fabric.Repair;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Runtime.InteropServices;
-
     /// <summary>
     /// Utility for executing the commands which were specified in commandline parameter 
     /// </summary>
@@ -37,7 +37,7 @@ namespace Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility
         public CommandProcessor(FabricClient fabricClient, IPatchOrchestrationEvents serviceEventSource)
         {
             this.fabricClient = fabricClient;
-            ServiceEventSource.Current = serviceEventSource;
+            Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility.Helpers.ServiceEventSource.Current = serviceEventSource;
             this.cancellationTokenSource = new CancellationTokenSource();
         }
 

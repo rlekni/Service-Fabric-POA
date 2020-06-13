@@ -1,17 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{215BF228-73E7-440D-BED6-63F2A4CD4094}</ProjectGuid>
-    <SrcRoot>..\..\src</SrcRoot>
+    <TargetFramework>net45</TargetFramework>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentService</RootNamespace>
-    <AssemblyName>NodeAgentService</AssemblyName>
+    <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn></NoWarn>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <Platforms>x64</Platforms>
+    <SrcRoot>..\..\src</SrcRoot>
+    <StartupObject>Microsoft.ServiceFabric.PatchOrchestration.NodeAgentNTService.Program</StartupObject>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <Import Project="$(SrcRoot)\properties\common.props" />
   <Import Project="$(SrcRoot)\properties\EnableStylecop.props" />
-  <PropertyGroup>
-    <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
-  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="3.3.654" />
     <PackageReference Include="Microsoft.ServiceFabric" Version="6.4.654" />
@@ -21,15 +25,6 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="HealthManagerHelper.cs" />
-    <Compile Include="MonitorWindowsService.cs" />
-    <Compile Include="NodeAgentService.cs" />
-    <Compile Include="NtServiceConfigurationUtility.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="ServiceEventSource.cs" />
-    <Compile Include="DirectoryUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="logmansessions.cfg">
@@ -48,14 +43,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NodeAgentNTService\NodeAgentNTService.csproj">
-      <Project>{d8beed99-bbb5-4dcc-a28e-eec023849335}</Project>
-      <Name>NodeAgentNTService</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\NodeAgentSFUtility\NodeAgentSFUtility.csproj">
-      <Project>{5c4944f8-ac08-43c8-886c-ac11ddbf7e2f}</Project>
-      <Name>NodeAgentSFUtility</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\NodeAgentNTService\NodeAgentNTService.csproj" />
+    <ProjectReference Include="..\NodeAgentSFUtility\NodeAgentSFUtility.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

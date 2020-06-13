@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
+using System.Fabric;
+using Microsoft.ServiceFabric.PatchOrchestration.Common;
+
 namespace Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility
 {
-    using System;
-    using System.Fabric;
-    using Microsoft.ServiceFabric.PatchOrchestration.Common;
-
     internal class Program
     {
         private static int Main(string[] args)
@@ -19,7 +19,7 @@ namespace Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility
                 FabricClientSettings settings = new FabricClientSettings();
                 settings.HealthReportSendInterval = TimeSpan.FromSeconds(0);
                 FabricClient fabricClient = new FabricClient(settings);
-                CommandProcessor commandProcessor = new CommandProcessor(fabricClient, ServiceEventSource.Current);
+                Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility.CommandProcessor commandProcessor = new Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility.CommandProcessor(fabricClient, ServiceEventSource.Current);
                 var task = commandProcessor.ProcessArguments(args);
                 task.Wait();
 
