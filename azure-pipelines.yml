@@ -46,12 +46,17 @@ jobs:
           projects: $(buildProjects)
           noCache: true
           verbosityRestore: Normal
-      - task: DotNetCoreCLI@2
-        displayName: Build projects
+      # - task: DotNetCoreCLI@2
+      #   displayName: Build projects
+      #   inputs:
+      #     projects: $(buildProjects)
+      #     packDirectory: $(Build.ArtifactStagingDirectory)
+      #     arguments: "-c $(buildConfiguration) /p:Platform=x64"
+      - task: VSBuild@1
         inputs:
-          projects: $(buildProjects)
-          packDirectory: $(Build.ArtifactStagingDirectory)
-          arguments: "-c $(buildConfiguration) /p:Platform=x64"
+          solution: "**\*.sln"
+          msbuildargs: "/p:Platform=x64"
+          configuration: $(buildConfiguration)
       - task: DotNetCoreCLI@2
         displayName: Package Projects (Publish - Release)
         inputs:
