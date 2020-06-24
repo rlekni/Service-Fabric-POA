@@ -46,7 +46,7 @@ jobs:
           # msbuildLocation: "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/MSBuild/15.0/Bin/MSBuild.exe"
           platform: x64
           configuration: $(buildConfiguration)
-          msbuildArguments: "/t:restore;clean;rebuild;package /nr:false /nologo"
+          msbuildArguments: "/t:restore;clean;rebuild;package /nr:false /p:PackageLocation=$(Build.ArtifactStagingDirectory)/drop/release/applicationpackage"
       # - task: DotNetCoreCLI@2
       #   displayName: Package Projects (Publish - Release)
       #   inputs:
