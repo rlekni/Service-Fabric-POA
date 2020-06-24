@@ -2,11 +2,10 @@ trigger:
   branches:
     include:
       - master
+      - new-csproj
 
 variables:
   buildConfiguration: Release
-  buildProjects: "**/*.csproj"
-  packageProjects: "**/*.sfproj"
 
 jobs:
   - job: build_old
@@ -24,10 +23,6 @@ jobs:
     pool:
       vmImage: windows-2019
     steps:
-      - task: DotNetCoreInstaller@0
-        displayName: Install .NET CLI
-        inputs:
-          version: 2.1.300
       - task: NuGetCommand@2
         displayName: Restore packages
         inputs:
@@ -43,29 +38,22 @@ jobs:
           solution: "**/*.sfproj"
           msbuildVersion: 15.0
           msbuildArchitecture: x64
-          # msbuildLocation: "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/MSBuild/15.0/Bin/MSBuild.exe"
           platform: x64
           configuration: $(buildConfiguration)
           msbuildArguments: "/t:restore;clean;rebuild;package /nr:false /p:PackageLocation=$(Build.ArtifactStagingDirectory)/drop/release/applicationpackage"
-      # - task: DotNetCoreCLI@2
-      #   displayName: Package Projects (Publish - Release)
-      #   inputs:
-      #     projects: $(packageProjects)
-      #     packDirectory: $(Build.ArtifactStagingDirectory)/drop/release
-      #     arguments: "-c $(buildConfiguration) /p:Platform=x64 /t:Package /p:PackageLocation=$(Build.ArtifactStagingDirectory)/drop/release/applicationpackage"
-      # - task: ServiceFabricUpdateManifests@2
-      #   displayName: Update Service Fabric Version (Release)
-      #   inputs:
-      #     applicationPackagePath: $(Build.ArtifactStagingDirectory)/drop/release/applicationpackage
-      #     versionSuffix: $(Build.BuildNumber)
-      #     versionBehaviour: Replace
+      - task: ServiceFabricUpdateManifests@2
+        displayName: Update Service Fabric Version (Release)
+        inputs:
+          applicationPackagePath: $(Build.ArtifactStagingDirectory)/drop/release/applicationpackage
+          versionSuffix: $(Build.BuildNumber)
+          versionBehaviour: Replace
       - task: CopyFiles@2
         displayName: Copy XML Files to Artifacts (Release)
         inputs:
           SourceFolder: src\
           Contents: |
-            **\*.ServiceFabric\PublishProfiles\*.xml
-            **\*.ServiceFabric\ApplicationParameters\*.xml
+            **\PublishProfiles\*.xml
+            **\ApplicationParameters\*.xml
           TargetFolder: $(Build.ArtifactStagingDirectory)/drop/release/projectartifacts
           CleanTargetFolder: true
       - task: PublishBuildArtifacts@1
