@@ -28,16 +28,6 @@ jobs:
         displayName: Install .NET CLI
         inputs:
           version: 2.1.300
-      # - task: DotNetCoreCLI@2
-      #   displayName: Restore packages (CS Projects)
-      #   inputs:
-      #     command: restore
-      #     feedsToUse: config
-      #     nugetConfigPath: nuget.config
-      #     projects: $(buildProjects)
-      #     restoreDirectory: "../packages"
-      #     noCache: true
-      #     verbosityRestore: Normal
       - task: NuGetCommand@2
         displayName: Restore packages
         inputs:
@@ -48,17 +38,6 @@ jobs:
           restoreDirectory: "../packages"
           noCache: true
           verbosityRestore: Normal
-      # - task: DotNetCoreCLI@2
-      #   displayName: Build projects
-      #   inputs:
-      #     projects: $(buildProjects)
-      #     packDirectory: $(Build.ArtifactStagingDirectory)
-      #     arguments: "-c $(buildConfiguration)ss /p:Platform=x64"
-      # - task: VSBuild@1
-      #   inputs:
-      #     solution: "**/*.sln"
-      #     msbuildargs: "/p:Platform=x64 /nr:false /nologo /t:restore;clean;rebuild;package"
-      #     configuration: $(buildConfiguration)
       - task: MSBuild@1
         inputs:
           solution: "**/*.sln"
@@ -66,6 +45,7 @@ jobs:
           platform: x64
           configuration: $(buildConfiguration)
           msbuildArguments: "/t:restore;clean;rebuild;package /nr:false /nologo"
+          msbuildLocation: "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe"
       - task: DotNetCoreCLI@2
         displayName: Package Projects (Publish - Release)
         inputs:
