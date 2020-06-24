@@ -42,10 +42,11 @@ jobs:
         inputs:
           solution: "**/*.sln"
           msbuildVersion: 15.0
+          msbuildArchitecture: x64
+          msbuildLocation: "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/MSBuild/15.0/Bin/MSBuild.exe"
           platform: x64
           configuration: $(buildConfiguration)
           msbuildArguments: "/t:restore;clean;rebuild;package /nr:false /nologo"
-          msbuildLocation: "C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\MSBuild.exe"
       - task: DotNetCoreCLI@2
         displayName: Package Projects (Publish - Release)
         inputs:
