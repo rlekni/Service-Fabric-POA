@@ -53,12 +53,12 @@ jobs:
       #     projects: $(packageProjects)
       #     packDirectory: $(Build.ArtifactStagingDirectory)/drop/release
       #     arguments: "-c $(buildConfiguration) /p:Platform=x64 /t:Package /p:PackageLocation=$(Build.ArtifactStagingDirectory)/drop/release/applicationpackage"
-      - task: ServiceFabricUpdateManifests@2
-        displayName: Update Service Fabric Version (Release)
-        inputs:
-          applicationPackagePath: $(Build.ArtifactStagingDirectory)/drop/release/applicationpackage
-          versionSuffix: $(Build.BuildNumber)
-          versionBehaviour: Replace
+      # - task: ServiceFabricUpdateManifests@2
+      #   displayName: Update Service Fabric Version (Release)
+      #   inputs:
+      #     applicationPackagePath: $(Build.ArtifactStagingDirectory)/drop/release/applicationpackage
+      #     versionSuffix: $(Build.BuildNumber)
+      #     versionBehaviour: Replace
       - task: CopyFiles@2
         displayName: Copy XML Files to Artifacts (Release)
         inputs:
