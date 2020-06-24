@@ -35,6 +35,7 @@ jobs:
           feedsToUse: config
           nugetConfigPath: nuget.config
           projects: $(buildProjects)
+          restoreDirectory: "../packages"
           noCache: true
           verbosityRestore: Normal
       - task: NuGetCommand@2
