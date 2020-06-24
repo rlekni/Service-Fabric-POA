@@ -28,23 +28,22 @@ jobs:
         displayName: Install .NET CLI
         inputs:
           version: 2.1.300
-      - task: DotNetCoreCLI@2
-        displayName: Restore packages (CS Projects)
-        inputs:
-          command: restore
-          feedsToUse: config
-          nugetConfigPath: nuget.config
-          projects: $(buildProjects)
-          restoreDirectory: "../packages"
-          noCache: true
-          verbosityRestore: Normal
+      # - task: DotNetCoreCLI@2
+      #   displayName: Restore packages (CS Projects)
+      #   inputs:
+      #     command: restore
+      #     feedsToUse: config
+      #     nugetConfigPath: nuget.config
+      #     projects: $(buildProjects)
+      #     restoreDirectory: "../packages"
+      #     noCache: true
+      #     verbosityRestore: Normal
       - task: NuGetCommand@2
         displayName: Restore packages (SF Projects)
         inputs:
-          restoreSolution: $(packageProjects)
+          restoreSolution: "**/*.sln"
           restoreDirectory: "../packages"
           feedsToUse: config
-          projects: $(buildProjects)
           noCache: true
           verbosityRestore: Normal
       # - task: DotNetCoreCLI@2
