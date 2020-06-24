@@ -51,12 +51,19 @@ jobs:
       #   inputs:
       #     projects: $(buildProjects)
       #     packDirectory: $(Build.ArtifactStagingDirectory)
-      #     arguments: "-c $(buildConfiguration) /p:Platform=x64"
-      - task: VSBuild@1
+      #     arguments: "-c $(buildConfiguration)ss /p:Platform=x64"
+      # - task: VSBuild@1
+      #   inputs:
+      #     solution: "**/*.sln"
+      #     msbuildargs: "/p:Platform=x64 /nr:false /nologo /t:restore;clean;rebuild;package"
+      #     configuration: $(buildConfiguration)
+      - task: MSBuild@1
         inputs:
           solution: "**/*.sln"
-          msbuildargs: "/p:Platform=x64 /nr:false /nologo /t:restore;clean;rebuild;package"
+          msbuildVersion: 15.0
+          platform: x64
           configuration: $(buildConfiguration)
+          msbuildArguments: "/t:restore;clean;rebuild;package /nr:false /nologo"
       - task: DotNetCoreCLI@2
         displayName: Package Projects (Publish - Release)
         inputs:
