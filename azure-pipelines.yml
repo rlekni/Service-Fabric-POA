@@ -40,7 +40,7 @@ jobs:
           verbosityRestore: Normal
       - task: MSBuild@1
         inputs:
-          solution: "**/*.sln"
+          solution: "src/PatchOrchestrationApplication/**/*.sf"
           msbuildVersion: 15.0
           msbuildArchitecture: x64
           msbuildLocation: "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/MSBuild/15.0/Bin/MSBuild.exe"
