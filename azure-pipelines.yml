@@ -39,11 +39,13 @@ jobs:
       #     noCache: true
       #     verbosityRestore: Normal
       - task: NuGetCommand@2
-        displayName: Restore packages (SF Projects)
+        displayName: Restore packages
         inputs:
-          restoreSolution: "**/*.sln"
-          restoreDirectory: "../packages"
+          command: restore
           feedsToUse: config
+          nugetConfigPath: nuget.config
+          restoreSolution: "src/PatchOrchestrationApplication/packages.config"
+          restoreDirectory: "../packages"
           noCache: true
           verbosityRestore: Normal
       # - task: DotNetCoreCLI@2
