@@ -41,7 +41,7 @@ jobs:
         displayName: Restore packages (SF Projects)
         inputs:
           restoreSolution: $(packageProjects)
-          restoreDirectory: "src/../packages"
+          restoreDirectory: "../packages"
           feedsToUse: config
           projects: $(buildProjects)
           noCache: true
