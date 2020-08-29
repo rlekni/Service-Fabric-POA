@@ -1,15 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
+using System.Diagnostics;
+using System.Threading;
+using Microsoft.ServiceFabric.Services.Runtime;
 
-namespace Microsoft.ServiceFabric.PatchOrchestration.CoordinatorService
+namespace Microsoft.ServiceFabric.PatchOrchestration.NodeAgentService
 {
-
-    using System;
-    using System.Diagnostics;
-    using System.Threading;
-    using Microsoft.ServiceFabric.Services.Runtime;
-
     internal static class Program
     {
         /// <summary>
@@ -24,10 +22,10 @@ namespace Microsoft.ServiceFabric.PatchOrchestration.CoordinatorService
                 // When Service Fabric creates an instance of this service type,
                 // an instance of the class is created in this host process.
 
-                ServiceRuntime.RegisterServiceAsync("CoordinatorServiceType",
-                    context => new CoordinatorService(context)).GetAwaiter().GetResult();
+                ServiceRuntime.RegisterServiceAsync("NodeAgentServiceType",
+                    context => new NodeAgentService(context)).GetAwaiter().GetResult();
 
-                ServiceEventSource.Current.InfoMessage("Service registered successfully Process ID = {0} type = {1}", Process.GetCurrentProcess().Id, typeof(CoordinatorService).Name);
+                ServiceEventSource.Current.InfoMessage("Service registered successfully Process ID = {0} type = {1}", Process.GetCurrentProcess().Id, typeof(NodeAgentService).Name);
 
                 // Prevents this host process from terminating so services keep running.
                 Thread.Sleep(Timeout.Infinite);

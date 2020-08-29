@@ -31,9 +31,7 @@ QuickBuild.log
 msbuild.log
 
 # VSMSBuild generated files in CoreXT
-*.sln
 *.projhash*
-*.slnhash*
 
 # Build.exe
 *.err
@@ -107,7 +105,6 @@ Commit: afbff9027d02ccfc680e031f6c295f79ad61662d
 *.suo
 *.user
 *.userosscache
-*.sln.docstates
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -357,7 +354,6 @@ paket-files/
 
 # JetBrains Rider
 .idea/
-*.sln.iml
 
 # CodeRush
 .cr/

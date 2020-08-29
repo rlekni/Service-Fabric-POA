@@ -1,12 +1,64 @@
 trigger:
-- master
+  branches:
+    include:
+      - master
+      - new-csproj
 
-pool:
-  vmImage: 'VS2017-Win2016'
+variables:
+  buildConfiguration: Release
 
-steps:
-- task: PowerShell@2
-  displayName: 'Build Code'
-  inputs:
-    targetType: filePath
-    filePath: './build.ps1'
+jobs:
+  - job: build_old
+    displayName: Build with ps script
+    pool:
+      vmImage: vs2017-win2016
+    steps:
+      - task: PowerShell@2
+        displayName: "Build Code"
+        inputs:
+          targetType: filePath
+          filePath: "./build.ps1"
+  - job: cibuild
+    displayName: cibuild
+    pool:
+      vmImage: windows-2019
+    steps:
+      - task: NuGetCommand@2
+        displayName: Restore packages
+        inputs:
+          command: restore
+          feedsToUse: config
+          nugetConfigPath: nuget.config
+          restoreSolution: "src/PatchOrchestrationApplication/packages.config"
+          restoreDirectory: "../packages"
+          noCache: true
+          verbosityRestore: Normal
+      - task: MSBuild@1
+        inputs:
+          solution: "**/*.sfproj"
+          msbuildVersion: 15.0
+          msbuildArchitecture: x64
+          platform: x64
+          configuration: $(buildConfiguration)
+          msbuildArguments: "/t:restore;clean;rebuild;package /nr:false /p:PackageLocation=$(Build.ArtifactStagingDirectory)/drop/release/applicationpackage"
+      - task: ServiceFabricUpdateManifests@2
+        displayName: Update Service Fabric Version (Release)
+        inputs:
+          applicationPackagePath: $(Build.ArtifactStagingDirectory)/drop/release/applicationpackage
+          versionSuffix: $(Build.BuildNumber)
+          versionBehaviour: Replace
+      - task: CopyFiles@2
+        displayName: Copy XML Files to Artifacts (Release)
+        inputs:
+          SourceFolder: src\
+          Contents: |
+            **\PublishProfiles\*.xml
+            **\ApplicationParameters\*.xml
+          TargetFolder: $(Build.ArtifactStagingDirectory)/drop/release/projectartifacts
+          CleanTargetFolder: true
+      - task: PublishBuildArtifacts@1
+        displayName: Publish Build artifacts
+        inputs:
+          pathToPublish: $(Build.ArtifactStagingDirectory)/drop
+          artifactName: drop
+          publishLocation: Container

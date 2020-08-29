@@ -23,7 +23,7 @@
     <Summary>This package contains Service Fabric Patch Orchestration Application, the application helps in keeping the nodes of service fabric cluster updated with latest windows updates</Summary>
     <Tags>PatchOrchestrationApplication</Tags>
     <PackageVersion>$(Version)</PackageVersion>
-    <SrcRoot>..\..\..\..\src</SrcRoot>
+    <SrcRoot>..\..\src</SrcRoot>
   </PropertyGroup>
   <Import Project="$(SrcRoot)\properties\common.props" />
   <Import Project="$(SrcRoot)\properties\nuproj.props" />

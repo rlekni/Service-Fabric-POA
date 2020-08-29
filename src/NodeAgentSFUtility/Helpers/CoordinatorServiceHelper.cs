@@ -1,17 +1,17 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+using System;
+using System.Fabric;
+using System.Fabric.Query;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.ServiceFabric.PatchOrchestration.Common;
+using Microsoft.ServiceFabric.PatchOrchestration.CoordinatorService;
+using Microsoft.ServiceFabric.Services.Remoting.Client;
+
 namespace Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility.Helpers
 {
-    using System;
-    using System.Fabric;
-    using System.Fabric.Query;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Common;
-    using Microsoft.ServiceFabric.PatchOrchestration.CoordinatorService;
-    using Microsoft.ServiceFabric.Services.Remoting.Client;
-
     /// <summary>
     /// Provides methods to update the PatchOrchestrationApplication's CoordinatorService with result of 
     /// 1) Search and Download

@@ -7,6 +7,6 @@ namespace Microsoft.ServiceFabric.PatchOrchestration.NodeAgentSFUtility.Helpers
 {
     internal static class ServiceEventSource
     {
-        internal static IPatchOrchestrationEvents Current;
+        internal static IPatchOrchestrationEvents Current { get; set; }
     }
 }

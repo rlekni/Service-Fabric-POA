@@ -140,7 +140,7 @@ namespace Microsoft.ServiceFabric.PatchOrchestration.Common
     /// Interface for carrying out operations from NodeAgentUtility
     /// For V1 of the POS service we'll be implementing this interface in both NTService and SFUtility executable
     /// </summary>
-    interface INodeAgentSfUtility
+    public interface INodeAgentSfUtility
     {
         /// <summary>
         /// Gets the state of Windows Update operation
